@@ -1,11 +1,45 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
+
+
 
 const Navbar = () => {
 
+    const { user, logOut } = useContext(AuthContext)
+    const [cart] = useCart();
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     const navOptions = <>
-        <li><Link to = '/'>HOME</Link></li>
-        <li><Link to = '/menu'>OUR MENU</Link></li>
-        <li><Link to = '/order/salad'>ORDER FOOD</Link></li>
+        <li><Link to='/'>HOME</Link></li>
+        <li><Link to='/menu'>OUR MENU</Link></li>
+        <li><Link to='/order/Salad'>ORDER FOOD</Link></li>
+        <li>
+            <Link to='/dashboard/mycart'>
+                <button className="btn gap-2">
+                  <FaShoppingCart></FaShoppingCart>
+                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                </button>
+            </Link>
+        </li>
+
+        {user ? <>
+            <button onClick={handleLogOut} className="btn btn-active btn-ghost">Log Out</button>
+        </> :
+            <>
+                <li><Link to='/login'>LOGIN</Link></li>
+            </>}
 
     </>
 
@@ -23,9 +57,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link>
-                    <h3 className="btn btn-ghost normal-case text-xl">BISTRO BOSS</h3> 
-                
-                    
+                        <h3 className="btn btn-ghost normal-case text-xl">BISTRO BOSS</h3>
+
+
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
