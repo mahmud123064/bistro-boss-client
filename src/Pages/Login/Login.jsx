@@ -4,6 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const from = location.state?.from?.pathname || "/";
+    // const from = location.state?.from?.pathname || "/";
 
     ///// 
     const { signIn } = useContext(AuthContext)
@@ -99,13 +100,15 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 {/* Make button disabled for captcha */}
-                                <input disabled={disabled} type="submit" value="Login" className="btn btn-primary" />
+                                <input disabled={disable} type="submit" value="Login" className="btn btn-primary" />
                             </div>
                         </form>
-
-                        <p><span>New Here? <Link to='/signup'>Create an account</Link></span></p>
+                        <p className='text-center'><span>New Here? <Link to='/signup'>Create an account</Link></span></p>
+                        <SocialLogin></SocialLogin>
                     </div>
+                 
                 </div>
+                
             </div>
         </>
 
