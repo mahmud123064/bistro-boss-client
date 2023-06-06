@@ -9,12 +9,11 @@ import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
 
-
     const [disable, setDisable] = useState(true)
     const location = useLocation();
     const navigate = useNavigate();
 
-    // const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
 
     ///// 
     const { signIn } = useContext(AuthContext)

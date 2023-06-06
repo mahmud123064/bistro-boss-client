@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart, FaWallet, FaCalendar, FaHome, FaUtensils, FaBook, FaUsers, } from 'react-icons/fa';
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 
 
@@ -8,7 +9,9 @@ const Dashboard = () => {
 
     const [cart] = useCart();
 
-    const isAdmin = true;
+    // const isAdmin = true;
+
+    const [isAdmin] = useAdmin();
     return (
         <div class="drawer drawer-mobile">
             <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
@@ -43,7 +46,7 @@ const Dashboard = () => {
                         isAdmin ? <>
 
                             <li><NavLink to='/dashboard/home'><FaHome></FaHome>ADMIN HOME</NavLink></li>
-                            <li><NavLink to='/dashboard/reservation'><FaUtensils></FaUtensils>ADD ITEMS</NavLink></li>
+                            <li><NavLink to='/dashboard/additem'><FaUtensils></FaUtensils>ADD AN ITEMS</NavLink></li>
                             <li><NavLink to='/dashboard/history'><FaWallet></FaWallet>MANAGE ITEMS</NavLink></li>
                             <li><NavLink to='/dashboard/history'><FaBook></FaBook>MANAGE BOOKINGS</NavLink></li>
                             <li><NavLink to='/dashboard/allusers'><FaUsers></FaUsers>ALL USERS</NavLink></li>
